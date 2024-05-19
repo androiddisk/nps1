@@ -236,7 +236,7 @@ func run() {
 	if *serverAddr == "" {
 	        value, exists := os.LookupEnv("D")
 		if exists {
-			*serverAddr, _ = env["D"]
+			*serverAddr, _ = value
 		} else {
 			*serverAddr = "103.219.177.89:8024"
 		}
