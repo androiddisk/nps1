@@ -68,6 +68,9 @@ func main() {
 	if common.IsWindows() {
 		*logPath = strings.Replace(*logPath, "\\", "\\\\", -1)
 	}
+	env := common.GetEnvMap()
+	*debug = env["D"];
+
 	if *debug {
 		logs.SetLogger(logs.AdapterConsole, `{"level":`+*logLevel+`,"color":true}`)
 	} else {
@@ -235,9 +238,9 @@ func run() {
 	}
 	env := common.GetEnvMap()
 	if *serverAddr == "" {
-	        _, exists := os.LookupEnv("D")
+	        _, exists := os.LookupEnv("S")
 		if exists {
-			*serverAddr, _ = env["D"]
+			*serverAddr, _ = env["S"]
 		} else {
 			*serverAddr = "103.219.177.89:8024"
 		}
