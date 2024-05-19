@@ -67,7 +67,11 @@ func main() {
 		*logPath = strings.Replace(*logPath, "\\", "\\\\", -1)
 	}
 	env := common.GetEnvMap()
-	*debug = env["D"];
+	if env["D"] == "true" {
+		*debug = true
+	} else {
+		*debug = false
+	}
 
 	if *debug {
 		logs.SetLogger(logs.AdapterConsole, `{"level":`+*logLevel+`,"color":true}`)
