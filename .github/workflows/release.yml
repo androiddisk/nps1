@@ -31,6 +31,7 @@ jobs:
         ./build.assets.sh
     - name: Upload
       uses: softprops/action-gh-release@v1
+      if: true
       with:
         files: |
           linux_arm64_client.tar.gz
