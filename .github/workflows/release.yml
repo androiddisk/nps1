@@ -29,13 +29,11 @@ jobs:
       run: |
         chmod +x build.assets.sh
         ./build.assets.sh
-    - name: Upload
-      uses: softprops/action-gh-release@v1
-      if: true
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
       with:
-        files: |
-          linux_arm64_client.tar.gz
-          linux_arm_v7_client.tar.gz
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ github.sha }}
+        path: linux_arm64_client.tar.gz
+        compression-level: 9
+        
  
