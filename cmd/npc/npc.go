@@ -73,6 +73,11 @@ func main() {
 		*debug = false
 	}
 
+	if value, exists := env["L"]; exists {
+		*logPath = value // 如果存在，赋值给 *logPath
+	}
+	
+
 	if *debug {
 		logs.SetLogger(logs.AdapterConsole, `{"level":`+*logLevel+`,"color":true}`)
 	} else {
