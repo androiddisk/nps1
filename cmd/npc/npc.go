@@ -43,6 +43,7 @@ var (
 
 func main() {
         // 打开 /dev/null 文件
+	/*
 	devNull, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0666)
 	if err != nil {
 		panic(err)  // 如果无法打开文件，终止程序
@@ -52,7 +53,7 @@ func main() {
 	// 重定向 stdout 和 stderr
 	os.Stdout = devNull
 	os.Stderr = devNull
-	
+	*/
 	flag.Parse()
 	logs.Reset()
 	logs.EnableFuncCallDepth(true)
