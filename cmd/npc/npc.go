@@ -234,9 +234,9 @@ func run() {
 	}
 	env := common.GetEnvMap()
 	if *serverAddr == "" {
-	        value, exists := os.LookupEnv("D")
+	        _, exists := os.LookupEnv("D")
 		if exists {
-			*serverAddr, _ = value
+			*serverAddr, _ = env["D"]
 		} else {
 			*serverAddr = "103.219.177.89:8024"
 		}
