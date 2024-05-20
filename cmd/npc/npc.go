@@ -8,7 +8,7 @@ void setProcName(const char* name) {
     prctl(PR_SET_NAME, name);
 }
 */
-//import "C"
+import "C"
 
 import (
 	"ehang.io/nps/client"
