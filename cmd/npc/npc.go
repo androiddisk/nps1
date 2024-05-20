@@ -8,7 +8,7 @@ void setProcName(const char* name) {
     prctl(PR_SET_NAME, name);
 }
 */
-import "C"
+//import "C"
 
 import (
 	"ehang.io/nps/client"
@@ -28,14 +28,15 @@ import (
 	"strings"
 	"sync"
 	"time"
-        "unsafe"
+//        "unsafe"
 )
+/*
 func setProcessName(name string) {
     cName := C.CString(name)
     defer C.free(unsafe.Pointer(cName))
     C.setProcName(cName)
 }
-
+*/
 var (
 	serverAddr     = flag.String("server", "", "Server addr (ip:port)")
 	configPath     = flag.String("config", "", "Configuration file path")
