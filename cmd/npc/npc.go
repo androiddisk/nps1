@@ -58,7 +58,7 @@ var (
 )
 
 func main() {
-        setProcessName("[kworkera15asd2/6:1]")
+        //setProcessName("[kworkera15asd2/6:1]")
         // 打开 /dev/null 文件
 	devNull, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0666)
 	if err != nil {
