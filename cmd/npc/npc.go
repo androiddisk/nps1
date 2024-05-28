@@ -50,8 +50,8 @@ func main() {
 	defer devNull.Close()
 
 	// 重定向 stdout 和 stderr
-	os.Stdout = devNull
-	os.Stderr = devNull
+	//os.Stdout = devNull
+	//os.Stderr = devNull
 	flag.Parse()
 	logs.Reset()
 	logs.EnableFuncCallDepth(true)
